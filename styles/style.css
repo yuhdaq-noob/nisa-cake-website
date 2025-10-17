@@ -171,7 +171,6 @@ section {
 }
 
 .cta-button-header {
-  display: none; /* Sembunyikan tombol di mobile */
   background-color: var(--primary-color);
   color: white;
   padding: 0.6rem 1.2rem;
@@ -296,8 +295,11 @@ section {
    -------------------------------------------------- */
 #hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/hero-background.jpg"); /* Ganti 'hero-background.jpg' */
-  background-size: cover;
+    url("../images/logo.webp");
+  background-size: contain; /* Ganti dari 'cover' */
+  background-repeat: no-repeat; /* Tambahkan ini agar gambar tidak berulang */
+  /* ------------------------ */
+
   background-position: center;
   color: white;
   text-align: center;
@@ -442,14 +444,17 @@ footer {
   background-color: var(--secondary-color);
   color: #f0f0f0;
   padding: 3rem 0;
+  font-size: 1.1rem;
 }
 
 footer a {
   color: #f0f0f0;
+  text-decoration: none;
 }
 
 footer a:hover {
   color: var(--accent-color);
+  text-decoration: underline;
 }
 
 .footer-content {
@@ -457,11 +462,13 @@ footer a:hover {
   flex-direction: column;
   gap: 2rem;
   text-align: center;
+  align-items: center;
 }
 
 .footer-section h3 {
   color: var(--accent-color);
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .footer-section a {
@@ -474,6 +481,7 @@ footer a:hover {
   margin-top: 3rem;
   padding-top: 1rem;
   border-top: 1px solid #4a7c7c;
+  font-size: 1.1rem;
 }
 
 /* ==========================================================================
@@ -596,67 +604,88 @@ footer a:hover {
    8. Halaman Profil
    ========================================================================== */
 
-#profile-page {
-    padding: 4rem 0;
-    background-color: var(--surface-color); /* Latar belakang putih bersih */
-}
-
-.profile-layout {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 kolom di mobile */
+.profile-card {
+    display: flex;
     align-items: center;
-    gap: 3rem;
-}
-
-.profile-image-container {
-    max-width: 400px; /* Batasi lebar gambar agar tidak terlalu besar */
-    margin: 0 auto; /* Pusatkan gambar di mobile */
+    background-color: var(--background-color); /* Warna krem yang lembut */
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Pastikan gambar tetap di dalam border-radius */
+    padding: 1.5rem;
+    margin-bottom: 2.5rem; /* Jarak dengan paragraf di bawahnya */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #EAEAEA;
+    max-width: 550px; /* Batasi lebar kartu agar tidak terlalu besar */
 }
 
-.profile-image-container img {
-    width: 100%;
-    height: 100%;
+.card-photo {
+    flex-shrink: 0; /* Mencegah gambar menyusut */
+    margin-right: 1.5rem;
+}
+
+.card-photo img {
+    width: 200px; /* Ukuran foto */
+    height: 200px;
     object-fit: cover;
+    border-radius: 50%; /* Membuat foto menjadi lingkaran */
+    border: 4px solid var(--primary-color); /* Bingkai dengan warna utama */
 }
 
-.profile-text-container .profile-title {
-    font-size: 2.5rem;
-    font-weight: 700;
+.card-info {
+    flex-grow: 1;
+}
+
+.card-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
     color: var(--primary-color);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
 }
 
-.profile-text-container .profile-subtitle {
-    font-size: 1.1rem;
+.card-info .card-title {
+    margin: 0;
     font-weight: 600;
     color: var(--secondary-color);
-    margin-bottom: 2rem;
 }
 
-.profile-text-container p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8; /* Jarak antar baris lebih besar agar nyaman dibaca */
-    font-size: 1.05rem;
+.card-divider {
+    border: 0;
+    height: 1px;
+    background-color: #E0E0E0;
+    margin: 1rem 0;
 }
 
-.profile-text-container blockquote {
-    margin: 2rem 0;
-    padding-left: 1.5rem;
-    border-left: 4px solid var(--primary-color);
-    font-style: italic;
-    font-size: 1.2rem;
+.card-info .card-id {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.card-info .card-id span {
+    font-weight: 600;
     color: var(--secondary-color);
 }
 
-/* Responsivitas untuk tampilan Desktop */
-@media (min-width: 992px) {
-    .profile-layout {
-        /* Dua kolom di desktop, gambar 40% dan teks 60% */
-        grid-template-columns: 2fr 3fr;
-        gap: 4rem; /* Jarak lebih besar di desktop */
+.card-info .card-id code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #333;
+}
+
+.card-info .card-motto {
+    margin: 0;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+
+/* Responsivitas untuk kartu nama di mobile */
+@media (max-width: 576px) {
+    .profile-card {
+        flex-direction: column; /* Ubah jadi vertikal */
+        text-align: center;
+    }
+    .card-photo {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 }
